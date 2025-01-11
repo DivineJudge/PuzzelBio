@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hou jij van puzzels?</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url('https://source.unsplash.com/1600x900/?puzzle,game,abstract') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        .container {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 30px;
+            border-radius: 10px;
+            display: inline-block;
+            margin: auto;
+            width: 100%;
+            max-width: 900px;
+        }
+        h1 {
+            font-size: 2.5em;
+        }
+        p {
+            font-size: 0.9em; /* Tekst verder verkleind */
+            line-height: 1.5;
+            text-align: left;
+            margin-bottom: 20px;
+            word-wrap: break-word;
+        }
+        .input-container {
+            margin-top: 20px;
+        }
+        input[type="text"] {
+            padding: 10px;
+            font-size: 1em;
+            width: 50%;
+            border: none;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #1e90ff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #4682b4;
+        }
+        .hint {
+            margin-top: 20px;
+            color: #ff6347;
+            font-style: italic;
+        }
+        .success {
+            margin-top: 20px;
+            color: #32cd32;
+        }
+        .error {
+            margin-top: 20px;
+            color: #ff4500;
+            font-weight: bold;
+        }
+        .code-info {
+            margin-top: 20px;
+            font-size: 1.1em;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Hou jij van puzzels?</h1>
+        <p>
+            Waarom houden mensen van puzzels?<br>
+            Antwoorden zoeken voelt als een avontuur.<br>
+            Cijfers, patronen, en raadsels dagen ons uit.<br>
+            Herinneringen aan successen maken ons blij.<br>
+            Toch is het niet alleen winnen dat telt.<br>
+            Wie een puzzel oplost, leert iets over zichzelf.<br>
+            Oplossingen liggen vaak verborgen in het zicht.<br>
+            Ontdekken hoe alles samenkomt, is magisch.<br>
+            Raadsels verbinden nieuwsgierige geesten.<br>
+            Daarom houd ik er zoveel van.<br>
+        </p>
+        <p class="code-info">Kun jij het codewoord vinden verborgen in het verhaal?</p>
+        <div id="hint" class="hint" style="display: none;">
+            Net zoals indrukken, zijn de eerste woorden altijd belangrijk.
+        </div>
+        <div class="input-container">
+            <input type="text" id="codeInput" placeholder="Voer de code in..." />
+            <button onclick="checkCode()">Controleer</button>
+        </div>
+        <div id="message" class="success" style="display: none;">
+            Code correct! Klik <a href="bio.html" style="color: #1e90ff; text-decoration: none;">hier</a> om meer over mij te lezen.
+        </div>
+        <div id="errorMessage" class="error" style="display: none;">
+            Code fout, probeer opnieuw.
+        </div>
+    </div>
+    <script>
+        let attempts = 0;
+
+        function checkCode() {
+            const correctCode = "wachtwoord";
+            const userInput = document.getElementById("codeInput").value.toLowerCase();
+            const hint = document.getElementById("hint");
+            const message = document.getElementById("message");
+            const errorMessage = document.getElementById("errorMessage");
+
+            if (userInput === correctCode) {
+                message.style.display = "block";
+                errorMessage.style.display = "none";
+                hint.style.display = "none";
+            } else {
+                attempts++;
+                errorMessage.style.display = "block";
+                if (attempts >= 3) {
+                    hint.style.display = "block";
+                }
+            }
+        }
+    </script>
+</body>
+</html>
